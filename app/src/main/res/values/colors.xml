@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    //Wanity Palette
+    <color name="mainBackground">#D5CFC4</color>
+    <color name="greenAccent">#ACCEA9</color>
+    <color name="turquoiseAccent">#1DA5A3</color>
+    <color name="purpleAccent">#561653</color>
+    <color name="pinkAccent">#E49788</color>
+    <color name="yellow_accent">#DBA720</color>
+    <color name="redAccent">#FD1D1D</color>
+    <color name="red">#CE5F48</color>
+    <color name="darkGreyScale">#3A3936</color>
+    <color name="mediumGreyScale">#75736E</color>
+    <color name="lightGreyScale">#D5CFC4</color>
+    //Extra colors
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="facebook">#A85A9CFF</color>
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
 </resources>

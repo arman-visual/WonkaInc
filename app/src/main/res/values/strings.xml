@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Wonka Inc</string>
+    <string name="action.cancel">Cancel</string>
 </resources>
