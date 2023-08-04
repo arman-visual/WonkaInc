@@ -13,7 +13,7 @@ data class EmployeeApiModel(
     val firstName: String,
     val gender: String,
     val height: Int,
-    val id: Int,
+    val id: Int? = null,
     val image: String,
     @Json(name="last_name")
     val lastName: String,

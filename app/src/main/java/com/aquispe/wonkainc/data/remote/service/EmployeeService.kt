@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface EmployeeService {
 
-    @GET("/{id}")
+    @GET("oompa-loompas/{id}")
     suspend fun getEmployeeById(
         @Path("id")
         id: Int,

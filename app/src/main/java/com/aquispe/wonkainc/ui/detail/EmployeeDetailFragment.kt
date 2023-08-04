@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.aquispe.wonkainc.R
 import com.aquispe.wonkainc.databinding.FragmentEmployeeDetailBinding
 import com.aquispe.wonkainc.ui.util.launchAndCollect
+import com.aquispe.wonkainc.ui.util.loadUrlWithCircleCrop
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,8 +38,21 @@ class EmployeeDetailFragment : Fragment() {
     }
 
     private fun subscribe() {
-        viewLifecycleOwner.launchAndCollect(viewModel.employee) {
-            binding.tvName.text = it?.firstName
+        viewLifecycleOwner.launchAndCollect(viewModel.employee) { employee ->
+            if (employee != null) {
+                binding.tvFullName.text = buildString {
+                    append(employee.firstName)
+                    append(" ")
+                    append(employee.lastName)
+                }
+
+                binding.tvEmail.text = employee.email
+
+                if(employee.image.isNotEmpty())
+                    binding.circleProfileImage.loadUrlWithCircleCrop(employee.image)
+                else
+                    binding.circleProfileImage.setImageResource(R.drawable.profile_icon)
+            }
         }
     }
 

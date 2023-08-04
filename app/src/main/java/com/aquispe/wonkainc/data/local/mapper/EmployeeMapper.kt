@@ -25,24 +25,3 @@ fun FavoriteDbModel.toDomain() = Favorite(
     randomString = randomString,
     song = song
 )
-
-fun Employee.toDbModel() = EmployeeDbModel(
-    id = id,
-    image = image,
-    firstName = firstName,
-    lastName = lastName,
-    age = age,
-    country = country,
-    gender = gender,
-    email = email,
-    height = height,
-    profession = profession,
-    favorite = favorite.toDbModel()
-)
-
-fun Favorite.toDbModel() = FavoriteDbModel(
-    color = color,
-    food = food,
-    randomString = randomString,
-    song = song
-)

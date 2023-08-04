@@ -1,5 +1,6 @@
 package com.aquispe.wonkainc.ui.detail
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aquispe.wonkainc.domain.model.Employee
@@ -11,7 +12,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class EmployeeDetailViewModel :
+@HiltViewModel
+class EmployeeDetailViewModel @Inject constructor(private val getEmployeeIdUseCase: GetEmployeeIdUseCase) :
     ViewModel() {
 
     private var _employee = MutableStateFlow<Employee?>(null)
@@ -22,9 +24,12 @@ class EmployeeDetailViewModel :
 
     fun getEmployeeId(id: Int) {
         viewModelScope.launch {
-//            getEmployeeIdUseCase(id).fold(
-//                ifLeft = { _error.value = it },
-//                ifRight = { _employee.value = it })
+            getEmployeeIdUseCase(id).fold(
+                ifLeft = { Log.w("EmployeeDetailViewModel", "getEmployeeId: ${it.message}") },
+                ifRight = {
+                    _employee.value = it
+                    Log.w("EmployeeDetailViewModel", "getEmployeeId: ${it.firstName}")
+                })
 
         }
     }

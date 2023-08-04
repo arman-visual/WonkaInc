@@ -2,6 +2,7 @@ package com.aquispe.wonkainc.di
 
 import com.aquispe.wonkainc.data.remote.client.APIClient
 import com.aquispe.wonkainc.data.remote.datasource.EmployeeDataSource
+import com.aquispe.wonkainc.data.remote.datasource.RemoteEmployeeDataSource
 import com.aquispe.wonkainc.data.remote.repository.DefaultEmployeeRepository
 import com.aquispe.wonkainc.data.remote.service.EmployeeService
 import com.aquispe.wonkainc.domain.repository.EmployeeRepository
@@ -45,7 +46,7 @@ object RemoteDataModule {
     @Provides
     @Singleton
     fun provideEmployeeRepository(
-        remoteEmployeeDataSource: EmployeeDataSource,
+        remoteEmployeeDataSource: RemoteEmployeeDataSource,
     ): EmployeeRepository = DefaultEmployeeRepository(remoteEmployeeDataSource)
 }
 

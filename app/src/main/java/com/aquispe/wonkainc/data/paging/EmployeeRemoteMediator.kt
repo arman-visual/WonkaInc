@@ -71,7 +71,7 @@ class EmployeeRemoteMediator @Inject constructor(
                 val nextKey = if (endOfPaginationReached) null else page + 1
                 val remoteKeys: List<EmployeeRemoteKeys> = employees.map { employeeApiModel ->
                     EmployeeRemoteKeys(
-                        id = employeeApiModel.id,
+                        id = requireNotNull(employeeApiModel.id) ,
                         prevPage = prevKey,
                         nextPage = nextKey,
                         currentPage = page
