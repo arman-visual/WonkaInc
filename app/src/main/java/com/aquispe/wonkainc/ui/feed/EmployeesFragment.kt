@@ -1,10 +1,10 @@
 package com.aquispe.wonkainc.ui.feed
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -14,8 +14,6 @@ import androidx.navigation.fragment.findNavController
 import com.aquispe.wonkainc.databinding.FragmentEmployeesBinding
 import com.aquispe.wonkainc.ui.feed.adapter.EmployeeAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -24,9 +22,9 @@ class EmployeesFragment : Fragment() {
 
     private val employeesViewModel: EmployeesViewModel by viewModels()
     private lateinit var adapter: EmployeeAdapter
-    private lateinit var textChangeCountDownJob: Job
     private var _binding: FragmentEmployeesBinding? = null
     private val binding get() = _binding!!
+    private lateinit var alertDialog: AlertDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,28 +40,25 @@ class EmployeesFragment : Fragment() {
             onClickDetail(it.id)
         }
         binding.rcvEmployees.adapter = adapter
-        binding.includeHeader.wdgSearchView.setOnQueryTextListener(object :
-            SearchView.OnQueryTextListener {
+        alertDialog = FilterDialog(
+            requireActivity(),
+            onClickApplyFilter = { gender, profession ->
+                onApplyFilter(
+                    gender,
+                    profession
+                )
+            }).create()
 
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(query: String?): Boolean {
-                if (::textChangeCountDownJob.isInitialized)
-                    textChangeCountDownJob.cancel()
-
-                textChangeCountDownJob = lifecycleScope.launch {
-                    delay(1000)
-                    employeesViewModel.updateQueryFilter(query)
-                }
-                if (binding.includeHeader.tvCancel.visibility == View.GONE)
-                    binding.includeHeader.tvCancel.visibility = View.VISIBLE
-                return true
-            }
-        })
+        binding.includeHeader.ivFilters.setOnClickListener {
+            alertDialog.show()
+        }
         subscribe()
         employeesViewModel.getEmployeesGeneral()
+    }
+
+    private fun onApplyFilter(gender: String?, profession: String?) {
+        employeesViewModel.updateGenderAndProfessionFilter(gender, profession)
+        binding.rcvEmployees.scrollToPosition(0)
     }
 
     private fun subscribe() {
@@ -83,6 +78,15 @@ class EmployeesFragment : Fragment() {
 
     override fun onDestroyView() {
         _binding = null
+        if (alertDialog.isShowing) {
+            alertDialog.dismiss()
+        }
         super.onDestroyView()
     }
+    //TODO mostrar error en caso de fuera de conexion
+    //TODO mostrar error en caso de no encontrar resultados o vacio en la busqueda
+    //Mejorar diseño tanto del item como del detalle
+
+    //Crear los test
+    //TODO crear readmi
 }

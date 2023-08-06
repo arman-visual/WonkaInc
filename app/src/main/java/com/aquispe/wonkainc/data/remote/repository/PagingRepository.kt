@@ -25,11 +25,13 @@ class PagingRepository @Inject constructor(
             }
         }
 
-    suspend fun getFilteredEmployees(query: String): List<Employee> =
+    suspend fun getFilteredEmployees(
+        gender: String? = null,
+        profession: String? = null
+    ): List<Employee> =
         withContext(Dispatchers.IO) {
-            employeeDb.employeeDbModelDao().getFilteredEmployees(query).map { employeeDbModel ->
+            employeeDb.employeeDbModelDao().getFilteredEmployees(gender, profession).map { employeeDbModel ->
                 employeeDbModel.toDomain()
             }
         }
-
 }

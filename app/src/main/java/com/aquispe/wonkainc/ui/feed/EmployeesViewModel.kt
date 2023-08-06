@@ -1,6 +1,5 @@
 package com.aquispe.wonkainc.ui.feed
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -22,11 +21,19 @@ class EmployeesViewModel @Inject constructor(
     private var _searchStateUi = MutableStateFlow(SearchStateUi())
     val searchStateUi = _searchStateUi.asStateFlow()
 
-    fun getEmployeesGeneral(query: String = EMPTY_QUERY) {
+    fun getEmployeesGeneral(
+        gender: String? = null,
+        profession: String? = null
+    ) {
 
         viewModelScope.launch {
-            if (query.isNotEmpty()) {
-                val filteredEmployees = pagingRepository.getFilteredEmployees(query)
+
+            val isDisableGenderFilter = _searchStateUi.value.genderFilter.isNullOrEmpty()
+            val isDisableProfessionFilter = _searchStateUi.value.professionFilter.isNullOrEmpty()
+
+            if (!isDisableGenderFilter ||!isDisableProfessionFilter) {
+                val filteredEmployees =
+                    pagingRepository.getFilteredEmployees(gender, profession)
                 _searchStateUi.value =
                     _searchStateUi.value.copy(
                         pagingData = MutableStateFlow(
@@ -50,21 +57,19 @@ class EmployeesViewModel @Inject constructor(
         }
     }
 
-    fun updateQueryFilter(query: String?) {
-        if (query != null) {
-            _searchStateUi.value = _searchStateUi.value.copy(searchQuery = query)
-            getEmployeesGeneral(query)
+    fun updateGenderAndProfessionFilter(gender: String?, profession: String?) {
+        if (gender == null && profession == null) {
+            _searchStateUi.value = _searchStateUi.value.copy(genderFilter = null, professionFilter = null)
+            getEmployeesGeneral()
+        } else {
+            _searchStateUi.value = _searchStateUi.value.copy(genderFilter = gender, professionFilter = profession)
+            getEmployeesGeneral(gender, profession)
         }
-    }
-
-    companion object {
-        private const val EMPTY_QUERY = ""
     }
 }
 
 data class SearchStateUi(
-    val searchQuery: String = "",
-    val professionFilter: String = "",
-    val genderFilter: String = "",
+    val professionFilter: String? = null,
+    val genderFilter: String? = null,
     val pagingData: StateFlow<PagingData<Employee>> = MutableStateFlow(PagingData.empty()),
 )
