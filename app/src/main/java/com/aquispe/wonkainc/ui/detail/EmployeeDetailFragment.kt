@@ -1,14 +1,18 @@
 package com.aquispe.wonkainc.ui.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.aquispe.wonkainc.R
 import com.aquispe.wonkainc.databinding.FragmentEmployeeDetailBinding
+import com.aquispe.wonkainc.domain.model.Employee
+import com.aquispe.wonkainc.ui.util.getMessage
 import com.aquispe.wonkainc.ui.util.launchAndCollect
 import com.aquispe.wonkainc.ui.util.loadUrlWithCircleCrop
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,21 +42,37 @@ class EmployeeDetailFragment : Fragment() {
     }
 
     private fun subscribe() {
-        viewLifecycleOwner.launchAndCollect(viewModel.employee) { employee ->
-            if (employee != null) {
-                binding.tvFullName.text = buildString {
-                    append(employee.firstName)
-                    append(" ")
-                    append(employee.lastName)
+        viewLifecycleOwner.launchAndCollect(viewModel.stateDetailView) { stateView ->
+            when (stateView) {
+                is EmployeeDetailViewModel.ViewState.Loading -> {
+                   Log.d("TAG", "Loading")//TODO aquispe añadir loading
                 }
-
-                binding.tvEmail.text = employee.email
-
-                if(employee.image.isNotEmpty())
-                    binding.circleProfileImage.loadUrlWithCircleCrop(employee.image)
-                else
-                    binding.circleProfileImage.setImageResource(R.drawable.profile_icon)
+                is EmployeeDetailViewModel.ViewState.Content -> {
+                    showDetailProfile(stateView.employee)
+                }
+                is EmployeeDetailViewModel.ViewState.Error -> Toast.makeText(
+                    requireActivity(),
+                    stateView.throwable.getMessage(),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
+        }
+    }
+
+    private fun showDetailProfile(employee: Employee?) {
+        if (employee != null) {
+            binding.tvFullName.text = buildString {
+                append(employee.firstName)
+                append(" ")
+                append(employee.lastName)
+            }
+
+            binding.tvEmail.text = employee.email
+
+            if (employee.image.isNotEmpty())
+                binding.circleProfileImage.loadUrlWithCircleCrop(employee.image)
+            else
+                binding.circleProfileImage.setImageResource(R.drawable.profile_icon)
         }
     }
 
@@ -60,5 +80,4 @@ class EmployeeDetailFragment : Fragment() {
         _binding = null
         super.onDestroyView()
     }
-
 }

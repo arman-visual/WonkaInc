@@ -1,6 +1,5 @@
 package com.aquispe.wonkainc.ui.detail
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aquispe.wonkainc.domain.model.Employee
@@ -16,22 +15,25 @@ import javax.inject.Inject
 class EmployeeDetailViewModel @Inject constructor(private val getEmployeeIdUseCase: GetEmployeeIdUseCase) :
     ViewModel() {
 
-    private var _employee = MutableStateFlow<Employee?>(null)
-    val employee: StateFlow<Employee?> get() = _employee.asStateFlow()
-
-    private var _error = MutableStateFlow<Throwable?>(null)
-    val error: StateFlow<Throwable?> get() = _error.asStateFlow()
+    private var _stateDetailView = MutableStateFlow<ViewState>(ViewState.Loading)
+    val stateDetailView: StateFlow<ViewState> get() = _stateDetailView.asStateFlow()
 
     fun getEmployeeId(id: Int) {
         viewModelScope.launch {
             getEmployeeIdUseCase(id).fold(
-                ifLeft = { Log.w("EmployeeDetailViewModel", "getEmployeeId: ${it.message}") },
+                ifLeft = {
+                    _stateDetailView.value = ViewState.Error(it)
+                },
                 ifRight = {
-                    _employee.value = it
-                    Log.w("EmployeeDetailViewModel", "getEmployeeId: ${it.firstName}")
+                    _stateDetailView.value = ViewState.Content(it)
                 })
 
         }
     }
 
+    sealed class ViewState {
+        object Loading : ViewState()
+        data class Error(val throwable: Throwable) : ViewState()
+        data class Content(val employee: Employee) : ViewState()
+    }
 }

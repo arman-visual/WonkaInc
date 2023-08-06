@@ -66,10 +66,12 @@ class EmployeesViewModel @Inject constructor(
             getEmployeesGeneral(gender, profession)
         }
     }
+
+    data class SearchStateUi(
+        val professionFilter: String? = null,
+        val genderFilter: String? = null,
+        val pagingData: StateFlow<PagingData<Employee>> = MutableStateFlow(PagingData.empty()),
+    )
 }
 
-data class SearchStateUi(
-    val professionFilter: String? = null,
-    val genderFilter: String? = null,
-    val pagingData: StateFlow<PagingData<Employee>> = MutableStateFlow(PagingData.empty()),
-)
+

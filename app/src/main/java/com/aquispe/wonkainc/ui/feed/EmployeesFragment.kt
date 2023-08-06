@@ -5,16 +5,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import com.aquispe.wonkainc.databinding.FragmentEmployeesBinding
 import com.aquispe.wonkainc.ui.feed.adapter.EmployeeAdapter
+import com.aquispe.wonkainc.ui.util.getMessage
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -39,7 +44,9 @@ class EmployeesFragment : Fragment() {
         adapter = EmployeeAdapter {
             onClickDetail(it.id)
         }
+
         binding.rcvEmployees.adapter = adapter
+
         alertDialog = FilterDialog(
             requireActivity(),
             onClickApplyFilter = { gender, profession ->
@@ -62,6 +69,7 @@ class EmployeesFragment : Fragment() {
     }
 
     private fun subscribe() {
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 employeesViewModel.searchStateUi.collectLatest {
@@ -69,6 +77,35 @@ class EmployeesFragment : Fragment() {
                 }
             }
         }
+
+        lifecycleScope.launch {
+            adapter.loadStateFlow
+                .distinctUntilChangedBy { it.refresh }
+                .collect { loadState ->
+                    when (loadState.refresh) {
+                        is LoadState.Loading -> {
+                            //TODO show loading
+                        }
+                        is LoadState.NotLoading -> {
+                            if (adapter.snapshot().isEmpty()) {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "No hay resultados disponibles.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                        is LoadState.Error -> {
+                            val errorState = (loadState.refresh as LoadState.Error).error
+                            handleError(errorState)
+                        }
+                    }
+                }
+        }
+    }
+
+    private fun handleError(errorState: Throwable) {
+        Snackbar.make(binding.root, errorState.getMessage(), Snackbar.LENGTH_LONG).show()
     }
 
     private fun onClickDetail(id: Int) {
@@ -83,10 +120,6 @@ class EmployeesFragment : Fragment() {
         }
         super.onDestroyView()
     }
-    //TODO mostrar error en caso de fuera de conexion
-    //TODO mostrar error en caso de no encontrar resultados o vacio en la busqueda
     //Mejorar diseño tanto del item como del detalle
-
-    //Crear los test
-    //TODO crear readmi
+    //Crear los test unitarios y Readme
 }
