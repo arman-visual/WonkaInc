@@ -93,6 +93,7 @@ class EmployeesFragment : Fragment() {
                                     "No hay resultados disponibles.",
                                     Toast.LENGTH_SHORT
                                 ).show()
+                                //TODO aquispe show empty state
                             }
                         }
                         is LoadState.Error -> {
@@ -121,5 +122,5 @@ class EmployeesFragment : Fragment() {
         super.onDestroyView()
     }
     //Mejorar diseño tanto del item como del detalle
-    //Crear los test unitarios y Readme
+    //Readme
 }
