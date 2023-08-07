@@ -24,6 +24,10 @@ class EmployeesViewModel @Inject constructor(
     private var _searchStateUi = MutableStateFlow(SearchStateUi())
     val searchStateUi = _searchStateUi.asStateFlow()
 
+    init {
+        getEmployeesGeneral()
+    }
+
     fun getEmployeesGeneral(
         gender: String? = null,
         profession: String? = null

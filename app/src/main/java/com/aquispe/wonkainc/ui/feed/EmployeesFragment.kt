@@ -61,7 +61,6 @@ class EmployeesFragment : Fragment() {
             alertDialog.show()
         }
         subscribe()
-        employeesViewModel.getEmployeesGeneral()
     }
 
     private fun onApplyFilter(gender: String?, profession: String?) {
@@ -124,6 +123,11 @@ class EmployeesFragment : Fragment() {
             alertDialog.dismiss()
         }
         super.onDestroyView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //employeesViewModel.getEmployeesGeneral()
     }
     //Mejorar diseño tanto del item como del detalle
     //Readme
