@@ -1,8 +1,6 @@
 package com.aquispe.wonkainc.ui.detail
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.aquispe.wonkainc.R
 import com.aquispe.wonkainc.databinding.FragmentEmployeeDetailBinding
-import com.aquispe.wonkainc.domain.model.Employee
+import com.aquispe.wonkainc.ui.model.Color
+import com.aquispe.wonkainc.ui.model.EmployeeUiModel
+import com.aquispe.wonkainc.ui.model.Food
+import com.aquispe.wonkainc.ui.model.toUiModel
 import com.aquispe.wonkainc.ui.util.getMessage
 import com.aquispe.wonkainc.ui.util.launchAndCollect
 import com.aquispe.wonkainc.ui.util.loadUrlWithCircleCrop
@@ -52,12 +53,13 @@ class EmployeeDetailFragment : Fragment() {
                 is EmployeeDetailViewModel.ViewState.Content -> {
                     binding.pbLoadingDetail.visibility = View.GONE
                     binding.clEmployeeDetailContainer.visibility = View.VISIBLE
-                    showDetailProfile(stateView.employee)
+                    showDetailProfile(stateView.employee.toUiModel())
                 }
                 is EmployeeDetailViewModel.ViewState.Error -> {
                     binding.pbLoadingDetail.visibility = View.GONE
                     binding.includeError.clErrorContainer.visibility = View.VISIBLE
-                    binding.includeError.tvErrorMessage.text = stateView.throwable.getMessage(binding.root.context)
+                    binding.includeError.tvErrorMessage.text =
+                        stateView.throwable.getMessage(binding.root.context)
 
                     binding.clEmployeeDetailContainer.visibility = View.GONE
                 }
@@ -65,67 +67,54 @@ class EmployeeDetailFragment : Fragment() {
         }
     }
 
-    private fun showDetailProfile(employee: Employee?) {
-        if (employee != null) {
-            binding.tvFullName.text = buildString {
-                append(employee.firstName)
-                append(" ")
-                append(employee.lastName)
-            }
+    private fun showDetailProfile(employee: EmployeeUiModel) {
 
-            binding.tvEmail.text = employee.email
-
-            if (employee.image.isNotEmpty())
-                binding.circleProfileImage.loadUrlWithCircleCrop(employee.image)
-            else
-                binding.circleProfileImage.setImageResource(R.drawable.profile_icon)
-
-            when (val color = employee.favorite.color) {
-                "red" -> {
-                    val colour = ContextCompat.getColor(
-                        requireContext(),
-                        R.color.red
-                    )
-                    showColorFavorite(colour, color)
-                }
-                "blue" -> {
-                    val colour = ContextCompat.getColor(
-                        requireContext(),
-                        R.color.blue
-                    )
-                    showColorFavorite(colour, color)
-                }
-            }
-
-            when (employee.favorite.food) {
-                getString(R.string.favorite_chocolat) -> {
-                    val icon = ContextCompat.getDrawable(
-                        requireContext(),
-                        R.drawable.ic_chocolate
-                    )
-                    showIconByFavoriteFood(icon)
-                }
-                getString(R.string.favorite_cocoa_nuts).lowercase() -> {
-                    val icon = ContextCompat.getDrawable(
-                        requireContext(),
-                        R.drawable.ic_cacao
-                    )
-                    showIconByFavoriteFood(icon)
-                }
-            }
-
-            binding.includeFavoriteProfile.tvFavoriteFood.text = employee.favorite.food
-
-            binding.includeInformationProfile.tvProfession.text = employee.profession
-            binding.includeInformationProfile.tvCountry.text = employee.country
-            binding.includeInformationProfile.tvAge.text = employee.age.toString()
-
-            binding.includeSecondInformationProfile.tvHeight.text = employee.height.toString()
-            binding.includeSecondInformationProfile.tvIndentify.text = requireNotNull(id).toString()
+        binding.tvFullName.text = buildString {
+            append(employee.firstName)
+            append(" ")
+            append(employee.lastName)
         }
+
+        binding.tvEmail.text = employee.email
+
+        if (employee.image.isNotEmpty())
+            binding.circleProfileImage.loadUrlWithCircleCrop(employee.image)
+        else
+            binding.circleProfileImage.setImageResource(R.drawable.profile_icon)
+
+        when (employee.favorite.food) {
+            Food.Chocolat -> showFavoriteFood(
+                drawableRes = R.drawable.ic_chocolate,
+                food = getString(R.string.favorite_chocolat)
+            )
+            Food.CocoaNut -> showFavoriteFood(
+                drawableRes = R.drawable.ic_cacao,
+                food = getString(R.string.favorite_cocoa_nuts)
+            )
+        }
+
+        when (employee.favorite.color) {
+            Color.Blue ->
+                showColorFavorite(colorRes = R.color.blue, color = getString(R.string.color_blue))
+            Color.Red ->
+                showColorFavorite(colorRes = R.color.red, color = getString(R.string.color_red))
+        }
+
+        binding.includeInformationProfile.tvProfession.text = employee.profession
+        binding.includeInformationProfile.tvCountry.text = employee.country
+        binding.includeInformationProfile.tvAge.text = employee.age.toString()
+
+        binding.includeSecondInformationProfile.tvHeight.text = employee.height.toString()
+        binding.includeSecondInformationProfile.tvIndentify.text = requireNotNull(id).toString()
+
     }
 
-    private fun showIconByFavoriteFood(icon: Drawable?) {
+    private fun showFavoriteFood(drawableRes: Int, food:String) {
+        val icon = ContextCompat.getDrawable(
+            requireContext(),
+            drawableRes
+        )
+
         binding.includeFavoriteProfile.ivFavoriteFood.setImageDrawable(icon).also {
             binding.includeFavoriteProfile.ivFavoriteFood.setColorFilter(
                 ContextCompat.getColor(
@@ -134,9 +123,15 @@ class EmployeeDetailFragment : Fragment() {
                 )
             )
         }
+        binding.includeFavoriteProfile.tvFavoriteFood.text = food
     }
 
-    private fun showColorFavorite(colour: Int, color: String) {
+    private fun showColorFavorite(colorRes: Int, color: String) {
+        val colour = ContextCompat.getColor(
+            requireContext(),
+            colorRes
+        )
+
         binding.includeFavoriteProfile.tvFavoriteColour.setTextColor(
             colour
         )
