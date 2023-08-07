@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cl_error_container"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_factory_wonka"
+        android:layout_width="256dp"
+        android:layout_height="256dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/factory_wonka_shadow"
+        app:layout_constraintBottom_toTopOf="@id/tv_error_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tv_error_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/emilys_candy_regular"
+        android:text="@string/unknow_error_message"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+</LinearLayout>

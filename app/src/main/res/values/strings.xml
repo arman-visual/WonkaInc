@@ -10,6 +10,11 @@
     <string name="title_toolbar_employees">List of Employees</string>
     <string name="profession_subtitle_option">profession</string>
     <string name="gender_subtitle_option">Gender</string>
+    <string name="unknow_error_message">An unknown error occurred. Please try again later.</string>
+    <string name="server_error_message">Server error occurred. Please try again later.</string>
+    <string name="resource_error_message">Resource not found.</string>
+    <string name="unauthorized_error">Unauthorized: Please login to access this resource.</string>
+    <string name="network_error">Network error occurred. Please check your internet connection and try again.</string>
 
     <string-array name="gender_array">
         <item>Select</item>

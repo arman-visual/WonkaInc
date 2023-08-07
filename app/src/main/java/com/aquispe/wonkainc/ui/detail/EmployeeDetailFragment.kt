@@ -50,11 +50,12 @@ class EmployeeDetailFragment : Fragment() {
                 is EmployeeDetailViewModel.ViewState.Content -> {
                     showDetailProfile(stateView.employee)
                 }
-                is EmployeeDetailViewModel.ViewState.Error -> Toast.makeText(
-                    requireActivity(),
-                    stateView.throwable.getMessage(),
-                    Toast.LENGTH_SHORT
-                ).show()
+                is EmployeeDetailViewModel.ViewState.Error -> {
+                    binding.includeError.clErrorContainer.visibility = View.VISIBLE
+                    binding.includeError.tvErrorMessage.text = stateView.throwable.getMessage(binding.root.context)
+
+                    binding.clEmployeeDetailContainer.visibility = View.GONE
+                }
             }
         }
     }

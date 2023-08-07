@@ -1,10 +1,12 @@
 package com.aquispe.wonkainc.ui.util
 
+import android.content.Context
 import android.widget.ImageView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.aquispe.wonkainc.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.coroutines.flow.Flow
@@ -33,21 +35,21 @@ fun ImageView.loadUrlWithCircleCrop(url: String) {
         .into(this)
 }
 
-fun Throwable.getMessage(): String {
+fun Throwable.getMessage(context: Context): String {
     return when (this) {
         is IOException -> {
-            "Network error occurred. Please check your internet connection and try again."
+            context.getString(R.string.network_error)
         }
         is HttpException -> {
             when (this.code()) {
-                401 -> "Unauthorized: Please login to access this resource."
-                404 -> "Resource not found."
-                500 -> "Server error occurred. Please try again later."
+                401 -> context.getString(R.string.unauthorized_error)
+                404 -> context.getString(R.string.resource_error_message)
+                500 -> context.getString(R.string.server_error_message)
                 else -> "HTTP Error ${this.code()}: ${this.message()}"
             }
         }
         else -> {
-            "An unknown error occurred. Please try again later."
+            context.getString(R.string.unknow_error_message)
         }
     }
 }

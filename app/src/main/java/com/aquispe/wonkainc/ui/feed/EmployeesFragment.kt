@@ -106,7 +106,7 @@ class EmployeesFragment : Fragment() {
     }
 
     private fun handleError(errorState: Throwable) {
-        Snackbar.make(binding.root, errorState.getMessage(), Snackbar.LENGTH_LONG).show()
+        Snackbar.make(binding.root, errorState.getMessage(binding.root.context), Snackbar.LENGTH_LONG).show()
     }
 
     private fun onClickDetail(id: Int) {
