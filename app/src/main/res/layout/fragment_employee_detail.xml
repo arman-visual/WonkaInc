@@ -6,10 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.detail.EmployeeDetailFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:id="@+id/iv_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_back_arrow" />
+
+    </androidx.appcompat.widget.Toolbar>
+
     <ProgressBar
         android:id="@+id/pb_loading_detail"
         android:layout_width="56dp"
         android:layout_height="56dp"
+        android:visibility="gone"
         android:layout_centerInParent="true" />
 
     <include
@@ -17,21 +34,21 @@
         layout="@layout/layout_error"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/toolbar"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="20dp"
         android:visibility="gone" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_employee_detail_container"
         android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="match_parent"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar"
         android:layout_alignParentEnd="true"
-        android:layout_height="match_parent">
+        android:layout_alignParentBottom="true">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circle_profile_image"
@@ -64,8 +81,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="20dp"
-            android:textSize="20sp"
             android:textColor="@color/black"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/include_information_profile"
             app:layout_constraintEnd_toEndOf="parent"
@@ -100,9 +117,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/include_second_information_profile" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

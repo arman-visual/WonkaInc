@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.aquispe.wonkainc.R
 import com.aquispe.wonkainc.databinding.FragmentEmployeeDetailBinding
@@ -39,6 +40,7 @@ class EmployeeDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.ivBackArrow.setOnClickListener { findNavController().popBackStack() }
         subscribe()
         viewModel.getEmployeeId(requireNotNull(id))
     }
