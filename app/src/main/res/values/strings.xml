@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Wonka Inc</string>
+    <string name="app_name">WonkaInc App</string>
     <string name="action.cancel">Cancel</string>
     <string name="label_profession">Profession</string>
     <string name="age">Age</string>
