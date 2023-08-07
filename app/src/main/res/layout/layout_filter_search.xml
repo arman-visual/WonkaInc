@@ -12,6 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:fontFamily="@font/emilys_candy_regular"
         android:text="@string/label_filter"
         android:textColor="@color/black"
         android:textSize="36sp"
@@ -38,7 +39,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="Gender"
+        android:fontFamily="@font/emilys_candy_regular"
+        android:text="@string/gender_subtitle_option"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/sp_gender"
@@ -49,9 +51,11 @@
     <Spinner
         android:id="@+id/sp_gender"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_height="48dp"
+        android:layout_marginVertical="12dp"
+        android:fontFamily="@font/emilys_candy_regular"
         android:popupBackground="@drawable/spinner_dropdown_background"
+        app:layout_constraintBottom_toTopOf="@+id/tv_profession_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_gender_title" />
@@ -61,7 +65,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="profession"
+        android:fontFamily="@font/emilys_candy_regular"
+        android:text="@string/profession_subtitle_option"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/sp_profession"
@@ -72,9 +77,10 @@
     <Spinner
         android:id="@+id/sp_profession"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="12dp"
         android:popupBackground="@drawable/spinner_dropdown_background"
+        app:layout_constraintBottom_toTopOf="@+id/bt_apply_filter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_profession_title" />
@@ -84,23 +90,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
-        android:text="Button"
+        android:fontFamily="@font/emilys_candy_regular"
+        android:text="@string/label_apply_filter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sp_profession" />
-
 
     <TextView
         android:id="@+id/tv_clear_filter"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="Clear Filter"
-        android:textColor="@color/black"
+        android:fontFamily="@font/emilys_candy_regular"
+        android:text="@string/clear_filter"
+        android:textColor="@color/purpleAccent"
         android:textSize="18sp"
-        app:layout_constraintTop_toTopOf="@+id/bt_apply_filter"
         app:layout_constraintBottom_toBottomOf="@+id/bt_apply_filter"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bt_apply_filter" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

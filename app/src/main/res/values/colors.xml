@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    //Wanity Palette
-    <color name="mainBackground">#D5CFC4</color>
-    <color name="greenAccent">#ACCEA9</color>
-    <color name="turquoiseAccent">#1DA5A3</color>
     <color name="purpleAccent">#561653</color>
-    <color name="pinkAccent">#E49788</color>
-    <color name="yellow_accent">#DBA720</color>
-    <color name="redAccent">#FD1D1D</color>
-    <color name="red">#CE5F48</color>
-    <color name="darkGreyScale">#3A3936</color>
-    <color name="mediumGreyScale">#75736E</color>
     <color name="lightGreyScale">#D5CFC4</color>
     //Extra colors
     <color name="black">#FF000000</color>

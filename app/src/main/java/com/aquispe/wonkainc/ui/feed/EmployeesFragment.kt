@@ -56,7 +56,7 @@ class EmployeesFragment : Fragment() {
                 )
             }).create()
 
-        binding.includeHeader.ivFilters.setOnClickListener {
+        binding.ivFilters.setOnClickListener {
             alertDialog.show()
         }
         subscribe()

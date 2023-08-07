@@ -45,11 +45,16 @@ class EmployeeAdapter(var onClickDetailPost: (Employee) -> Unit) :
     class EmployeeViewHolder(private val binding: ItemEmployeeBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(employee: Employee) {
-            binding.tvFullName.text = buildString {
+            binding.tvFullnameProfile.text = buildString {
                 append(employee.firstName)
                 append(" ")
                 append(employee.lastName)
             }
+
+            binding.tvProfessionTag.text = employee.profession
+            binding.tvCountryTag.text = employee.country
+            binding.tvEmail.text = employee.email
+
             if(employee.image.isNotEmpty())
                 binding.circleProfileImage.loadUrlWithCircleCrop(employee.image)
             else
