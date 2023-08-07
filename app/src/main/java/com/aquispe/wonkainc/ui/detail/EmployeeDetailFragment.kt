@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -45,12 +45,16 @@ class EmployeeDetailFragment : Fragment() {
         viewLifecycleOwner.launchAndCollect(viewModel.stateDetailView) { stateView ->
             when (stateView) {
                 is EmployeeDetailViewModel.ViewState.Loading -> {
-                   Log.d("TAG", "Loading")//TODO aquispe añadir loading
+                    binding.clEmployeeDetailContainer.visibility = View.GONE
+                    binding.pbLoadingDetail.visibility = View.VISIBLE
                 }
                 is EmployeeDetailViewModel.ViewState.Content -> {
+                    binding.pbLoadingDetail.visibility = View.GONE
+                    binding.clEmployeeDetailContainer.visibility = View.VISIBLE
                     showDetailProfile(stateView.employee)
                 }
                 is EmployeeDetailViewModel.ViewState.Error -> {
+                    binding.pbLoadingDetail.visibility = View.GONE
                     binding.includeError.clErrorContainer.visibility = View.VISIBLE
                     binding.includeError.tvErrorMessage.text = stateView.throwable.getMessage(binding.root.context)
 
@@ -74,7 +78,41 @@ class EmployeeDetailFragment : Fragment() {
                 binding.circleProfileImage.loadUrlWithCircleCrop(employee.image)
             else
                 binding.circleProfileImage.setImageResource(R.drawable.profile_icon)
+
+            when (val color = employee.favorite.color) {
+                "red" -> {
+                    val colour = ContextCompat.getColor(
+                        requireContext(),
+                        R.color.red
+                    )
+                    showColorFavorite(colour, color)
+                }
+                "blue" -> {
+                    val colour = ContextCompat.getColor(
+                        requireContext(),
+                        R.color.blue
+                    )
+                    showColorFavorite(colour, color)
+                }
+            }
+
+            binding.includeFavoriteProfile.tvFavoriteFood.text = employee.favorite.food
+
+            binding.includeInformationProfile.tvProfession.text = employee.profession
+            binding.includeInformationProfile.tvCountry.text = employee.country
+            binding.includeInformationProfile.tvAge.text = employee.age.toString()
+
+            binding.includeSecondInformationProfile.tvHeight.text = employee.height.toString()
+            binding.includeSecondInformationProfile.tvIndentify.text = requireNotNull(id).toString()
         }
+    }
+
+    private fun showColorFavorite(colour: Int, color: String) {
+        binding.includeFavoriteProfile.tvFavoriteColour.setTextColor(
+            colour
+        )
+        binding.includeFavoriteProfile.ivFavoriteColour.setColorFilter(colour)
+        binding.includeFavoriteProfile.tvFavoriteColour.text = color
     }
 
     override fun onDestroyView() {

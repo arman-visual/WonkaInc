@@ -29,13 +29,13 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="@color/lightGreyScale"
-        app:layout_constraintBottom_toTopOf="@id/tv_gender_title"
+        app:layout_constraintBottom_toTopOf="@id/tv_gender_title_dialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title_filter" />
 
     <TextView
-        android:id="@+id/tv_gender_title"
+        android:id="@+id/tv_gender_title_dialog"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -55,13 +55,13 @@
         android:layout_marginVertical="12dp"
         android:fontFamily="@font/emilys_candy_regular"
         android:popupBackground="@drawable/spinner_dropdown_background"
-        app:layout_constraintBottom_toTopOf="@+id/tv_profession_title"
+        app:layout_constraintBottom_toTopOf="@+id/tv_profession_title_dialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_gender_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_gender_title_dialog" />
 
     <TextView
-        android:id="@+id/tv_profession_title"
+        android:id="@+id/tv_profession_title_dialog"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -83,14 +83,13 @@
         app:layout_constraintBottom_toTopOf="@+id/bt_apply_filter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profession_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_profession_title_dialog" />
 
     <Button
         android:id="@+id/bt_apply_filter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
-        android:fontFamily="@font/emilys_candy_regular"
         android:text="@string/label_apply_filter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +100,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:fontFamily="@font/emilys_candy_regular"
+        android:textStyle="bold"
         android:text="@string/clear_filter"
         android:textColor="@color/purpleAccent"
         android:textSize="18sp"

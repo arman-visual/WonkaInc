@@ -1,26 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.detail.EmployeeDetailFragment">
 
+    <ProgressBar
+        android:id="@+id/pb_loading_detail"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_centerInParent="true" />
+
     <include
         android:id="@+id/include_error"
         layout="@layout/layout_error"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginHorizontal="20dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_employee_detail_container"
         android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_height="match_parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -31,8 +41,8 @@
             android:layout_marginEnd="12dp"
             android:src="@drawable/profile_icon"
             app:civ_border_color="#FF000000"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/tv_full_name"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,35 +50,61 @@
             android:id="@+id/tv_full_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/emilys_candy_regular"
+            android:textColor="@color/purpleAccent"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tv_email"
             app:layout_constraintTop_toBottomOf="@id/circle_profile_image"
-            tools:text="Full Name"
-            android:textSize="26sp" />
+            tools:text="Full Name" />
 
         <TextView
             android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="20dp"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/include_information_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_full_name"
-            app:layout_constraintBottom_toTopOf="@id/include_information_profile"
-            tools:text="Email"
-            android:textSize="18sp" />
+            tools:text="Email" />
 
         <include
             android:id="@+id/include_information_profile"
             layout="@layout/layout_contact_area"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="20dp"
+            app:layout_constraintBottom_toTopOf="@id/include_second_information_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_email" />
 
+        <include
+            android:id="@+id/include_second_information_profile"
+            layout="@layout/layout_area_information_second"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            app:layout_constraintBottom_toTopOf="@id/include_favorite_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/include_information_profile" />
+
+        <include
+            android:id="@+id/include_favorite_profile"
+            layout="@layout/layout_favorite_area"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/include_second_information_profile" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

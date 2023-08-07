@@ -15,6 +15,10 @@
     <string name="resource_error_message">Resource not found.</string>
     <string name="unauthorized_error">Unauthorized: Please login to access this resource.</string>
     <string name="network_error">Network error occurred. Please check your internet connection and try again.</string>
+    <string name="label_favorite_title">Favorite</string>
+    <string name="favorite_chocolat">Chocolat</string>
+    <string name="favorite_cocoa_nuts">Cocoa nuts</string>
+    <string name="label_no_result">Sorry, no results</string>
 
     <string-array name="gender_array">
         <item>Select</item>

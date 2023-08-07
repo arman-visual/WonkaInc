@@ -2,8 +2,6 @@ package com.aquispe.wonkainc
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.navigation.fragment.NavHostFragment
 import com.aquispe.wonkainc.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 

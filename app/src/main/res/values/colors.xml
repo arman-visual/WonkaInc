@@ -3,7 +3,11 @@
     <color name="purpleAccent">#561653</color>
     <color name="lightGreyScale">#D5CFC4</color>
     <color name="darkGreyScale">#3A3936</color>
-    <color name="mediumGreyScale">#75736E</color>
+    <color name="mediumGreyScale">#75736E</color>D2691E
+    <color name="brown">#D2691E</color>
+    <color name="red">#D32F2F</color>
+    <color name="blue">#1976D2</color>
+
     //Extra colors
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

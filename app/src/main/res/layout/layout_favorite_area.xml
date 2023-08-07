@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_counters_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_favorite"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="4dp"
+        android:src="@drawable/ic_favorite"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title_area_favorite"
+        app:layout_constraintEnd_toStartOf="@id/tv_title_area_favorite"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_title_area_favorite" />
+
+    <TextView
+        android:id="@+id/tv_title_area_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/emilys_candy_regular"
+        android:text="@string/label_favorite_title"
+        android:textColor="@color/purpleAccent"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/iv_favorite_food"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_favorite"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_favorite_food"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/ic_chocolate"
+        app:layout_constraintBottom_toTopOf="@+id/tv_favorite_food"
+        app:layout_constraintEnd_toStartOf="@+id/iv_favorite_colour"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_area_favorite"
+        app:tint="@color/brown" />
+
+    <TextView
+        android:id="@+id/tv_favorite_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/favorite_chocolat"
+        android:textColor="@color/purpleAccent"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iv_favorite_food"
+        app:layout_constraintStart_toStartOf="@id/iv_favorite_food"
+        app:layout_constraintTop_toBottomOf="@+id/iv_favorite_food" />
+
+    <ImageView
+        android:id="@+id/iv_favorite_colour"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/ic_color"
+        app:layout_constraintBottom_toTopOf="@id/tv_favorite_colour"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_favorite_food"
+        app:layout_constraintTop_toTopOf="@+id/iv_favorite_food" />
+
+    <TextView
+        android:id="@+id/tv_favorite_colour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/purpleAccent"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/iv_favorite_colour"
+        app:layout_constraintStart_toStartOf="@+id/iv_favorite_colour"
+        app:layout_constraintTop_toBottomOf="@+id/iv_favorite_colour"
+        tools:text="Blue" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

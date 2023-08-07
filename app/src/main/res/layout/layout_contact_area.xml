@@ -22,7 +22,7 @@
         app:layout_constraintGuide_percent="0.66" />
 
     <TextView
-        android:id="@+id/tv_country"
+        android:id="@+id/tv_country_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/country"
@@ -30,16 +30,16 @@
         android:textColor="@color/purpleAccent"
         android:textSize="12sp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toTopOf="@+id/tv_profile_country"
+        app:layout_constraintBottom_toTopOf="@+id/tv_country"
         app:layout_constraintEnd_toEndOf="@id/first_guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_country"/>
 
     <TextView
-        android:id="@+id/tv_profile_country"
+        android:id="@+id/tv_country"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/country"
+        tools:text="@string/country"
         android:textAlignment="center"
         android:textColor="@color/purpleAccent"
         android:textSize="12sp"
@@ -47,21 +47,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/first_guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_country"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_country_title"/>
 
     <ImageView
         android:id="@+id/iv_country"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_country"
-        app:layout_constraintBottom_toTopOf="@+id/tv_country"
+        app:layout_constraintBottom_toTopOf="@+id/tv_country_title"
         app:layout_constraintEnd_toEndOf="@id/first_guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
 
     <TextView
-        android:id="@+id/tv_profession"
+        android:id="@+id/tv_profession_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/label_profession"
@@ -69,16 +69,16 @@
         android:textColor="@color/purpleAccent"
         android:textSize="12sp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toTopOf="@+id/tv_profile_profession"
+        app:layout_constraintBottom_toTopOf="@+id/tv_profession"
         app:layout_constraintEnd_toEndOf="@+id/end_guideline"
         app:layout_constraintStart_toStartOf="@+id/first_guideline"
         app:layout_constraintTop_toBottomOf="@+id/iv_profession" />
 
     <TextView
-        android:id="@+id/tv_profile_profession"
+        android:id="@+id/tv_profession"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/label_profession"
+        tools:text="@string/label_profession"
         android:textAlignment="center"
         android:textColor="@color/purpleAccent"
         android:textSize="12sp"
@@ -86,20 +86,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/end_guideline"
         app:layout_constraintStart_toStartOf="@+id/first_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profession" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_profession_title" />
 
     <ImageView
         android:id="@+id/iv_profession"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_profession"
-        app:layout_constraintBottom_toTopOf="@id/tv_profession"
+        app:layout_constraintBottom_toTopOf="@id/tv_profession_title"
         app:layout_constraintEnd_toEndOf="@+id/end_guideline"
         app:layout_constraintStart_toStartOf="@+id/first_guideline"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/tv_age"
+        android:id="@+id/tv_age_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/age"
@@ -107,16 +107,16 @@
         android:textColor="@color/purpleAccent"
         android:textSize="12sp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toTopOf="@+id/tv_age_profile"
+        app:layout_constraintBottom_toTopOf="@+id/tv_age"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/end_guideline"
         app:layout_constraintTop_toBottomOf="@+id/iv_age"/>
 
     <TextView
-        android:id="@+id/tv_age_profile"
+        android:id="@+id/tv_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/age"
+        tools:text="@string/age"
         android:textAlignment="center"
         android:textColor="@color/purpleAccent"
         android:textSize="12sp"
@@ -124,14 +124,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/end_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_age"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_age_title"/>
 
     <ImageView
         android:id="@+id/iv_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_age"
-        app:layout_constraintBottom_toTopOf="@+id/tv_age"
+        app:layout_constraintBottom_toTopOf="@+id/tv_age_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/end_guideline"
         app:layout_constraintTop_toTopOf="parent" />

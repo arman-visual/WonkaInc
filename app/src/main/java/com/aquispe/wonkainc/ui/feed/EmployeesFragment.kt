@@ -2,10 +2,10 @@ package com.aquispe.wonkainc.ui.feed
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import com.aquispe.wonkainc.R
 import com.aquispe.wonkainc.databinding.FragmentEmployeesBinding
 import com.aquispe.wonkainc.ui.feed.adapter.EmployeeAdapter
 import com.aquispe.wonkainc.ui.util.getMessage
@@ -88,12 +89,7 @@ class EmployeesFragment : Fragment() {
                         }
                         is LoadState.NotLoading -> {
                             if (adapter.snapshot().isEmpty()) {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "No hay resultados disponibles.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                //TODO aquispe show empty state
+                                Log.d("TAG", getString(R.string.label_no_result))
                             }
                         }
                         is LoadState.Error -> {
@@ -103,6 +99,14 @@ class EmployeesFragment : Fragment() {
                     }
                 }
         }
+    }
+
+    private fun showErrorMessage(message: String) {
+        binding.includeErrorMessage.clErrorContainer.visibility =
+            View.VISIBLE
+
+        binding.includeErrorMessage.tvErrorMessage.text =
+            message
     }
 
     private fun handleError(errorState: Throwable) {
