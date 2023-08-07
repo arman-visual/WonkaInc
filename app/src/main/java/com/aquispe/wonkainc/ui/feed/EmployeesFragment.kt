@@ -13,7 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import com.aquispe.wonkainc.R
 import com.aquispe.wonkainc.databinding.FragmentEmployeesBinding
 import com.aquispe.wonkainc.ui.feed.adapter.EmployeeAdapter
 import com.aquispe.wonkainc.ui.util.getMessage
@@ -82,34 +81,31 @@ class EmployeesFragment : Fragment() {
             adapter.loadStateFlow
                 .distinctUntilChangedBy { it.refresh }
                 .collect { loadState ->
-                    when (loadState.refresh) {
-                        is LoadState.Loading -> {
-                            //TODO show loading
-                        }
-                        is LoadState.NotLoading -> {
-                            if (adapter.snapshot().isEmpty()) {
-                                Log.d("TAG", getString(R.string.label_no_result))
-                            }
-                        }
-                        is LoadState.Error -> {
-                            val errorState = (loadState.refresh as LoadState.Error).error
-                            handleError(errorState)
-                        }
+                    Log.d(TAG, "LoadState: $loadState")
+
+                    val isRefreshing = loadState.refresh
+                    if (isRefreshing is LoadState.Error) {
+                        Log.e(TAG, "Refresh - Error: ${isRefreshing.error}")
+                        val errorState = (loadState.refresh as LoadState.Error).error
+                        handleError(errorState)
+                    }
+
+                    val isAppending = loadState.append
+                    if (isAppending is LoadState.Error) {
+                        Log.e(TAG, "Append - Error: ${isAppending.error}")
+                        val errorState = (loadState.append as LoadState.Error).error
+                        handleError(errorState)
                     }
                 }
         }
     }
 
-    private fun showErrorMessage(message: String) {
-        binding.includeErrorMessage.clErrorContainer.visibility =
-            View.VISIBLE
-
-        binding.includeErrorMessage.tvErrorMessage.text =
-            message
-    }
-
     private fun handleError(errorState: Throwable) {
-        Snackbar.make(binding.root, errorState.getMessage(binding.root.context), Snackbar.LENGTH_LONG).show()
+        Snackbar.make(
+            binding.root,
+            errorState.getMessage(binding.root.context),
+            Snackbar.LENGTH_LONG
+        ).show()
     }
 
     private fun onClickDetail(id: Int) {
@@ -125,10 +121,7 @@ class EmployeesFragment : Fragment() {
         super.onDestroyView()
     }
 
-    override fun onResume() {
-        super.onResume()
-        //employeesViewModel.getEmployeesGeneral()
+    companion object {
+        private const val TAG = "EmployeesFragment"
     }
-    //Mejorar diseño tanto del item como del detalle
-    //Readme
 }

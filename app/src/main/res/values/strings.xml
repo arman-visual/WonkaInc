@@ -19,6 +19,8 @@
     <string name="favorite_chocolat">Chocolat</string>
     <string name="favorite_cocoa_nuts">Cocoa nuts</string>
     <string name="label_no_result">Sorry, no results</string>
+    <string name="color_blue">Blue</string>
+    <string name="color_red">Red</string>
 
     <string-array name="gender_array">
         <item>Select</item>
