@@ -1,5 +1,6 @@
 package com.aquispe.wonkainc.ui.detail
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -96,6 +97,23 @@ class EmployeeDetailFragment : Fragment() {
                 }
             }
 
+            when (employee.favorite.food) {
+                getString(R.string.favorite_chocolat) -> {
+                    val icon = ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_chocolate
+                    )
+                    showIconByFavoriteFood(icon)
+                }
+                getString(R.string.favorite_cocoa_nuts).lowercase() -> {
+                    val icon = ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_cacao
+                    )
+                    showIconByFavoriteFood(icon)
+                }
+            }
+
             binding.includeFavoriteProfile.tvFavoriteFood.text = employee.favorite.food
 
             binding.includeInformationProfile.tvProfession.text = employee.profession
@@ -104,6 +122,17 @@ class EmployeeDetailFragment : Fragment() {
 
             binding.includeSecondInformationProfile.tvHeight.text = employee.height.toString()
             binding.includeSecondInformationProfile.tvIndentify.text = requireNotNull(id).toString()
+        }
+    }
+
+    private fun showIconByFavoriteFood(icon: Drawable?) {
+        binding.includeFavoriteProfile.ivFavoriteFood.setImageDrawable(icon).also {
+            binding.includeFavoriteProfile.ivFavoriteFood.setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.brown
+                )
+            )
         }
     }
 
