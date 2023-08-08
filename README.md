@@ -83,6 +83,3 @@ To run the MyApp application, follow these steps:
 ## License
 
 This project is licensed under the Apache License. See the _LICENSE_ file for more details.
-
----
-*Note: Remember to replace "WonkaApp" with the actual name of your Android application.*
