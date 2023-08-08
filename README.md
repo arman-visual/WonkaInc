@@ -1,3 +1,5 @@
+![title_app_wonka](https://github.com/arman-visual/WonkaInc/assets/54421980/04a98b34-18a4-444a-862f-facc84aa4e8e)
+
 # Android Project - Wonka App  :busts_in_silhouette:
 
 Wonka App is an Android application that retrieves data from a server, stores it locally, and displays the data in a paginated list. Users can access the details of each item by navigating to its individual view. The app also includes unit tests to ensure the stability and accuracy of its functionality. Additionally, it supports local data-based search functionality.
