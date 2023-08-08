@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_second_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/first_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/tv_indentify_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Identify"
+        android:textAlignment="center"
+        android:textColor="@color/purpleAccent"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/tv_indentify"
+        app:layout_constraintEnd_toEndOf="@id/first_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_country" />
+
+    <TextView
+        android:id="@+id/tv_indentify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/purpleAccent"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/first_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_indentify_title"
+        tools:text="Identify" />
+
+    <ImageView
+        android:id="@+id/iv_country"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/ic_identify"
+        app:layout_constraintBottom_toTopOf="@+id/tv_indentify_title"
+        app:layout_constraintEnd_toEndOf="@id/first_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_height_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Height"
+        android:textAlignment="center"
+        android:textColor="@color/purpleAccent"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/tv_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/first_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profession" />
+
+    <TextView
+        android:id="@+id/tv_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/purpleAccent"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/first_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tv_height_title"
+        tools:text="Height" />
+
+    <ImageView
+        android:id="@+id/iv_profession"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/ic_height"
+        app:layout_constraintBottom_toTopOf="@id/tv_height_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/first_guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
