@@ -30,8 +30,8 @@ fun ImageView.loadUrlWithCircleCrop(url: String) {
     Glide.with(context)
         .load(url)
         .circleCrop()
-        .diskCacheStrategy(DiskCacheStrategy.ALL) // Usar caché de disco para todas las imágenes
-        .skipMemoryCache(false) // No ignorar la caché de memoria
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .skipMemoryCache(false)
         .into(this)
 }
 
