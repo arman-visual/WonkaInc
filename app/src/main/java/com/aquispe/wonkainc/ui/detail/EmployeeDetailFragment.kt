@@ -11,9 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.aquispe.wonkainc.R
 import com.aquispe.wonkainc.databinding.FragmentEmployeeDetailBinding
-import com.aquispe.wonkainc.ui.model.Color
+import com.aquispe.wonkainc.ui.model.ColorUiModel
 import com.aquispe.wonkainc.ui.model.EmployeeUiModel
-import com.aquispe.wonkainc.ui.model.Food
+import com.aquispe.wonkainc.ui.model.FoodUiModel
 import com.aquispe.wonkainc.ui.model.toUiModel
 import com.aquispe.wonkainc.ui.util.getMessage
 import com.aquispe.wonkainc.ui.util.launchAndCollect
@@ -84,21 +84,21 @@ class EmployeeDetailFragment : Fragment() {
         else
             binding.circleProfileImage.setImageResource(R.drawable.profile_icon)
 
-        when (employee.favorite.food) {
-            Food.Chocolat -> showFavoriteFood(
+        when (employee.favorite.foodUiModel) {
+            FoodUiModel.Chocolat -> showFavoriteFood(
                 drawableRes = R.drawable.ic_chocolate,
                 food = getString(R.string.favorite_chocolat)
             )
-            Food.CocoaNut -> showFavoriteFood(
+            FoodUiModel.CocoaNut -> showFavoriteFood(
                 drawableRes = R.drawable.ic_cacao,
                 food = getString(R.string.favorite_cocoa_nuts)
             )
         }
 
-        when (employee.favorite.color) {
-            Color.Blue ->
+        when (employee.favorite.colorUiModel) {
+            ColorUiModel.Blue ->
                 showColorFavorite(colorRes = R.color.blue, color = getString(R.string.color_blue))
-            Color.Red ->
+            ColorUiModel.Red ->
                 showColorFavorite(colorRes = R.color.red, color = getString(R.string.color_red))
         }
 

@@ -18,20 +18,20 @@ fun Employee.toUiModel() = EmployeeUiModel(
 )
 
 fun Favorite.toUiModel() = FavoriteUiModel(
-    color = getColor(),
-    food = getFood(),
+    colorUiModel = getColor(),
+    foodUiModel = getFood(),
     randomString = randomString,
     song = song
 )
 
 private fun Favorite.getFood() = when (food) {
-    "Chocolat" -> Food.Chocolat
-    "cocoa nuts" -> Food.CocoaNut
+    "Chocolat" -> FoodUiModel.Chocolat
+    "cocoa nuts" -> FoodUiModel.CocoaNut
     else -> throw IllegalArgumentException("Valor desconocido para Food: $food")
 }
 
 private fun Favorite.getColor() = when (color) {
-    "blue" -> Color.Blue
-    "red" -> Color.Red
+    "blue" -> ColorUiModel.Blue
+    "red" -> ColorUiModel.Red
     else -> throw IllegalArgumentException("Valor desconocido para Color: $color")
 }
