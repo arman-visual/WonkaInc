@@ -1,13 +1,11 @@
 package com.aquispe.wonkainc.data.paging
 
-import androidx.annotation.VisibleForTesting
 import androidx.paging.*
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.aquispe.wankainc.FakeEmployeesApi
 import com.aquispe.wonkainc.data.local.database.EmployeesDatabase
 import com.aquispe.wonkainc.data.local.database.entities.EmployeeDbModel
-import com.aquispe.wonkainc.domain.model.Favorite
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import com.aquispe.wonkainc.data.remote.model.EmployeeApiModel
 import com.aquispe.wonkainc.data.remote.model.FavoriteApiModel
@@ -81,8 +79,6 @@ class EmployeeRemoteMediatorTest {
 
     @Test
     fun given_LoadSuccess_with_noMoreData_when_refresh_then_endOfPaginationIsTrue() = runTest {
-        // To test endOfPaginationReached, don't set up the mockApi to return post
-        // data here.
         val remoteMediator =  EmployeeRemoteMediator(
             mockApi,
             mockDb
