@@ -2,6 +2,7 @@
 
 Wonka App is an Android application that retrieves data from a server, stores it locally, and displays the data in a paginated list. Users can access the details of each item by navigating to its individual view. The app also includes unit tests to ensure the stability and accuracy of its functionality. Additionally, it supports local data-based search functionality.
 
+## 🎥 Show Demo App
 [demo_app_wonka.webm](https://github.com/arman-visual/WonkaInc/assets/54421980/9ef833aa-e6ad-4375-94ed-fc49b52e4dfe)
 
 ## Dependencies
